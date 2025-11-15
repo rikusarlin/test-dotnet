@@ -1,0 +1,45 @@
+# Build output
+bin/
+obj/
+out/
+publish/
+
+# Visual Studio / VS Code
+.vscode/
+*.code-workspace
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# .NET Core / SDK files
+*.dotnet/
+project.lock.json
+project.fragment.lock.json
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+# Uncomment if you have a global packages folder
+# ~/.nuget/packages/
+
+# EF Core Migrations snapshot files (optional: if you want to ignore them)
+# MyApi/Migrations/*Snapshot.cs
+
+# Logs and temporary files
+*.log
+*.vsix
+*.DS_Store
+*.tmp
+
+# MacOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# SQLite DB
+*.db
