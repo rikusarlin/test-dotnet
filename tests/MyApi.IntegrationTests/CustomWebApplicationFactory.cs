@@ -18,9 +18,12 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             if (descriptor != null)
                 services.Remove(descriptor);
 
-            // Add in-memory database
+            // Generate a unique in-memory database name per factory instance
+            var dbName = $"TestDb_{Guid.NewGuid()}";
+
+            // Add in-memory database with unique name
             services.AddDbContext<AppDbContext>(options =>
-                options.UseInMemoryDatabase("TestDb"));
+                options.UseInMemoryDatabase(dbName));
 
             // Initialize DB
             var sp = services.BuildServiceProvider();

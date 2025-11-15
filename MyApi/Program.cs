@@ -14,13 +14,24 @@ public partial class Program
 
         if (!isIntegrationTest)
         {
+            var dbPath = Path.Combine(AppContext.BaseDirectory, "todos.db");
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite("Data Source=todos.db"));
+                options.UseSqlite($"Data Source={dbPath}"));
         }
 
         builder.Services.AddOpenApi();
 
         var app = builder.Build();
+
+        // Ensure SQLite database and tables exist
+        if (!isIntegrationTest)
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                db.Database.EnsureCreated();
+            }
+        }
 
         if (app.Environment.IsDevelopment())
         {
